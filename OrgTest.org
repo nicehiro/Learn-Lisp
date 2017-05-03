@@ -1,0 +1,94 @@
+# +HTML_HEAD: <link rel="stylesheet" type="text/css" href="style1.css" />
+* [#B] first level title
+** second level title
+
+S + TAB unfold/fold all chapter
+TAB fold/unfold focus chapter
+M + left/right up/down tile level
+
+无序列表：
++ treeroot
+  + branch1
+  + branch2
+M + Enter 输入同级条目
+
+有序列表：
+1) [ ] 任务一 [0/3]
+   1) [x] 子任务1
+   2) [ ] 子任务2
+   3) [ ] 子任务3
+2) [ ] 任务二
+M + Enter 输入同级条目
+M + up/down 上下调整条目
+M + left/right 调整条目等级
+
+脚注：
+[fn:1] http://www.nicehiro.org
+
+表格：
+| Name   |       Phone | sub1 | sub2 | total | new |
+|--------+-------------+------+------+-------+-----|
+| maple  | 17826856902 |   89 |   98 |   187 |     |
+| wizard | 12786765756 |   78 |   87 |   165 |     |
+| haha   | 32877334783 |   34 |   32 |    66 |     |
+#+TBLFM: $5=$3+$4
+C + c | 插入表格
+C + c C + c 对齐表格
+Tab 移动左右 配合 shift
+Enter 移动上下 配合shift
+M + up/down/left/right 移动行或列
+
+链接：
+[[www.baidu.com][百度]]
+[[test.jpg]]
+C + c C + x C + v 直接预览图片
+
+TODO
+** DONE wash clothes
+*** TODO [# A] 任务1
+*** DONE [#C] 任务2
+*** TODO 总任务 [66%]
+**** TODO 子任务1
+**** DONE 子任务2 [100%]
+     - [X] subsub1 [2/2]
+       - [X] subsub2
+       - [X] subsub3
+**** DONE 子任务3						       :tag1:
+     :PROPERTIES:
+     :ORDERED:  t
+     :END:
+C-c C-t 切换 TODO 状态
+C-c / t 树的形式实现
+C-c C-c 切换 checkbox 的状态
+C-c , 设置优先级
+
+Tags:
+C-c C-q 添加标签
+
+time：
+DEADLINE:
+SCHEDULED:
+
+** TODO wash clothes
+SCHEDULED: <2017-05-06 六>
+DEADLINE: <2017-05-07 日>
+C-c . 插入时间
+
+ *bold* 
+ /italic/
+ =code=
+_underlined_
+~verbatim~
++strike-through+
+
+#+TITLE: this is the title
+#+OPTIONS: toc:2 (only)
+
+#+BEGIN_SRC python :results output
+a = 1 + 1
+print a
+#+END_SRC
+
+#+RESULTS:
+: 2
+
