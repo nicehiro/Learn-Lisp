@@ -1,21 +1,21 @@
-(defun parse-pattern (pat)
-  (labels ((rec (i n ctrl acc)
-	     (if (< i n)
-		 (let* ((c (char pat i))
-			(ctrl-next (and (not ctrl) (char= c #\%))))
-		   (rec (i+ 1)
-			n
-			ctrl-next
-			(if ctrl-next
-			    acc
-			    (cons
-			     (if ctrl
-				 (case c
-				   (#\a 'all)
-				   (#\w 'word)
-				   (#\d 'digit)
-				   (#\% #\%))
-				 c)
-			     acc))))
-		 (concatenate 'vector (nreverse acc)))))
-    (rec 0 (length pat) nil nil)))
+(defmacro my-if (test then else)
+  `(cond
+	 (,test ,then)
+	 (t ,else)))
+
+(defmacro nth-expr (n &body body)
+  (if (integerp n)
+	  `(case ,n
+		 ,@(let ((i -1))
+				(mapcar #'(lambda (x) `(,(incf i) ,x)) body)))))
+
+(defmacro n-of (n expr)
+  (let ((grec (gensym)))
+	`(labels ((,grec (i j acc)
+				(if (= i j)
+					(nreverse acc)
+					(,grec (1+ i) j (cons ,expr acc)))))
+	   (,grep 0 ,n nil))))
+
+(defmacro retain (params &body body)
+  `((lambda ,params ,@body) ,@params))
